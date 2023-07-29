@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "595652296484",
+    "project_id": "socioverse-f2620",
+    "storage_bucket": "socioverse-f2620.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:595652296484:android:84572b37e4b5028523fdb1",
+        "android_client_info": {
+          "package_name": "socioverse.tifor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "595652296484-9nqtvmi1ou5r80kfegopq51a81rh7tes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvPBn7h1SCM3yvScDZ7gnOXfF3WuUkmnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "595652296484-9nqtvmi1ou5r80kfegopq51a81rh7tes.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
