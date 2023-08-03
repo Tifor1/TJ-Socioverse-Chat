@@ -34,12 +34,10 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
     protected void onBindViewHolder(@NonNull UserModelViewHolder holder, int position, @NonNull UserModel model) {
         try {
             holder.usernameText.setText(model.getUsername());
+            holder.email.setText(model.getEmail());
             if (model.getUserId().equals(FirebaseUtil.currentUserId())) {
                 holder.usernameText.setText(model.getUsername() + " (Me)");
-                holder.usernameText.setTextColor(R.color.red);
-            } else {
-                holder.usernameText.setTextColor(R.color.black);
-
+                holder.email.setText(model.getEmail());
             }
 
             try {
@@ -90,13 +88,14 @@ public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserMode
     }
 
     class UserModelViewHolder extends RecyclerView.ViewHolder {
-        TextView usernameText;
+        TextView usernameText, email;
         ImageView profilePic;
 
         public UserModelViewHolder(@NonNull View itemView) {
             super(itemView);
             try {
                 usernameText = itemView.findViewById(R.id.user_name_text);
+                email = itemView.findViewById(R.id.email_text);
                 profilePic = itemView.findViewById(R.id.profile_pic_image_view);
             } catch (Exception e) {
 

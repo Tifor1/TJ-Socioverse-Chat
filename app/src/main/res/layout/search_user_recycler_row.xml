@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:text="User name"
+        android:text="@string/username"
         android:textColor="@color/black"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_2sdp"
-        android:text="hi@gmail.com"
+        android:text="@string/emailText"
         app:layout_constraintStart_toStartOf="@id/user_name_text"
         app:layout_constraintTop_toBottomOf="@id/user_name_text"
         tools:ignore="MissingConstraints" />
