@@ -16,8 +16,8 @@ android {
         multiDexEnabled true
         minSdk 19
         targetSdk 34
-        versionCode 27
-        versionName "1.26"
+        versionCode 28
+        versionName "1.27"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -74,6 +74,7 @@ dependencies {
     implementation 'com.intuit.sdp:sdp-android:1.1.0'
     // DiagonalLayout'
     implementation 'com.github.florent37:diagonallayout:1.0.9'
-
+    implementation "androidx.work:work-runtime:2.8.1"
+    implementation 'com.google.firebase:firebase-messaging-directboot:23.2.0'
 
 }

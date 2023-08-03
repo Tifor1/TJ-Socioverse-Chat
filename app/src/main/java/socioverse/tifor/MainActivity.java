@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ImageButton searchButton;
-
     ChatFragment chatFragment;
     ProfileFragment profileFragment;
 
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         permissionNotification();
         permissionImage();

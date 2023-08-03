@@ -69,12 +69,16 @@ public class ChatActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.chat_recycler_view);
         imageView = findViewById(R.id.profile_pic_image_view);
 
-        FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl().addOnCompleteListener(t -> {
-            if (t.isSuccessful()) {
-                Uri uri = t.getResult();
-                AndroidUtil.setProfilePic(this, uri, imageView);
-            }
-        });
+        try {
+            FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl().addOnCompleteListener(t -> {
+                if (t.isSuccessful()) {
+                    Uri uri = t.getResult();
+                    AndroidUtil.setProfilePic(this, uri, imageView);
+                }
+            });
+        } catch (Exception e) {
+
+        }
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,49 +93,78 @@ public class ChatActivity extends AppCompatActivity {
             String message = messageInput.getText().toString().trim();
             if (!message.isEmpty()) {
                 sendMessageToUser(message);
+            } else {
+                messageInput.setError("Enter Your Message");
+
             }
         }));
 
-        getOrCreateChatroomModel();
-        setupChatRecyclerView();
+        try {
+            getOrCreateChatroomModel();
+            setupChatRecyclerView();
+        } catch (Exception e) {
+
+        }
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       /* // Get the intent that started this activity
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && "text/plain".equals(type)) {
+            // Handle the received text here
+            String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+            if (sharedText != null) {
+                // Set the shared text in the EditText
+                messageInput.setText(sharedText);
+            }
+        }*/
     }
 
     void setupChatRecyclerView() {
-        Query query = FirebaseUtil.getChatroomMessageReference(chatroomId).orderBy("timestamp", Query.Direction.DESCENDING);
+        try {
+            Query query = FirebaseUtil.getChatroomMessageReference(chatroomId).orderBy("timestamp", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>().setQuery(query, ChatMessageModel.class).build();
+            FirestoreRecyclerOptions<ChatMessageModel> options = new FirestoreRecyclerOptions.Builder<ChatMessageModel>().setQuery(query, ChatMessageModel.class).build();
 
-        adapter = new ChatRecyclerAdapter(options, getApplicationContext());
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        manager.setReverseLayout(true);
-        recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapter(adapter);
-        adapter.startListening();
-        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-            @Override
-            public void onItemRangeInserted(int positionStart, int itemCount) {
-                super.onItemRangeInserted(positionStart, itemCount);
-                recyclerView.smoothScrollToPosition(0);
-            }
-        });
+            adapter = new ChatRecyclerAdapter(options, getApplicationContext());
+            LinearLayoutManager manager = new LinearLayoutManager(this);
+            manager.setReverseLayout(true);
+            recyclerView.setLayoutManager(manager);
+            recyclerView.setAdapter(adapter);
+            adapter.startListening();
+            adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                @Override
+                public void onItemRangeInserted(int positionStart, int itemCount) {
+                    super.onItemRangeInserted(positionStart, itemCount);
+                    recyclerView.smoothScrollToPosition(0);
+                }
+            });
+        } catch (Exception e) {
+
+        }
     }
 
     void sendMessageToUser(String message) {
-        chatroomModel.setLastMessageTimestamp(Timestamp.now());
-        chatroomModel.setLastMessageSenderId(FirebaseUtil.currentUserId());
-        chatroomModel.setLastMessage(message);
-        FirebaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
+        try {
+            chatroomModel.setLastMessageTimestamp(Timestamp.now());
+            chatroomModel.setLastMessageSenderId(FirebaseUtil.currentUserId());
+            chatroomModel.setLastMessage(message);
+            FirebaseUtil.getChatroomReference(chatroomId).set(chatroomModel);
 
-        ChatMessageModel chatMessageModel = new ChatMessageModel(message, FirebaseUtil.currentUserId(), Timestamp.now());
-        FirebaseUtil.getChatroomMessageReference(chatroomId).add(chatMessageModel).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if (task.isSuccessful()) {
-                    messageInput.setText("");
-                    sendNotification(message);
+            ChatMessageModel chatMessageModel = new ChatMessageModel(message, FirebaseUtil.currentUserId(), Timestamp.now());
+            FirebaseUtil.getChatroomMessageReference(chatroomId).add(chatMessageModel).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    if (task.isSuccessful()) {
+                        messageInput.setText("");
+                        sendNotification(message);
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+
+        }
     }
 
     void getOrCreateChatroomModel() {
@@ -195,8 +228,8 @@ public class ChatActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     // The API call was successful
                 } else {
-                    // The API call failed
-                }
+
+                     }
             }
         });
     }
