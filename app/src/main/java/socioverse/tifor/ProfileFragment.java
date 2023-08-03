@@ -37,9 +37,10 @@ public class ProfileFragment extends Fragment {
 
     private ImageView profilePic;
     private EditText usernameInput;
-    private EditText phoneInput;
+    private EditText phoneInput, email;
     private Button updateProfileBtn;
     private ProgressBar progressBar;
+    private ProgressBar progressBar2;
     private TextView logoutBtn;
 
     private UserModel currentUserModel;
@@ -75,8 +76,10 @@ public class ProfileFragment extends Fragment {
         profilePic = view.findViewById(R.id.profile_image_view);
         usernameInput = view.findViewById(R.id.profile_username);
         phoneInput = view.findViewById(R.id.profile_phone);
+        email = view.findViewById(R.id.profile_email);
         updateProfileBtn = view.findViewById(R.id.profle_update_btn);
         progressBar = view.findViewById(R.id.profile_progress_bar);
+        progressBar2 = view.findViewById(R.id.profile_progress_bar2);
         logoutBtn = view.findViewById(R.id.logout_btn);
 
         try {
@@ -95,9 +98,12 @@ public class ProfileFragment extends Fragment {
                 public void onClick(View view) {
 
                     try {
+                        setInProgress2(true);
                         FirebaseMessaging.getInstance().deleteToken().addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 FirebaseUtil.logout();
+                                setInProgress2(false);
+                                Toast.makeText(getContext(), "Logging Out", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(requireContext(), LogInActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
@@ -203,6 +209,7 @@ public class ProfileFragment extends Fragment {
                         // Update UI with user data
                         usernameInput.setText(currentUserModel.getUsername());
                         phoneInput.setText(currentUserModel.getPhone());
+                        email.setText(currentUserModel.getEmail());
                     } else {
                         // Handle the case where the user data couldn't be fetched.
                         AndroidUtil.showToast(getContext(), "Failed to fetch user data");
@@ -227,6 +234,16 @@ public class ProfileFragment extends Fragment {
         } else {
             progressBar.setVisibility(View.GONE);
             updateProfileBtn.setVisibility(View.VISIBLE);
+        }
+    }
+
+    void setInProgress2(boolean inProgress) {
+        if (inProgress) {
+            progressBar2.setVisibility(View.VISIBLE);
+            logoutBtn.setVisibility(View.GONE);
+        } else {
+            progressBar2.setVisibility(View.GONE);
+            logoutBtn.setVisibility(View.VISIBLE);
         }
     }
 }

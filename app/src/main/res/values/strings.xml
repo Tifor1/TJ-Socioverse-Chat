@@ -73,4 +73,6 @@
     <string name="number">Number</string>
     <string name="show_password">Show Password</string>
     <string name="default_notification_channel_id">socioverse</string>
+    <string name="chats">Chats</string>
+    <string name="search_user">Search User</string>
 </resources>

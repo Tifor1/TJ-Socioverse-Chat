@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ChatActivity">
 
     <RelativeLayout
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/my_primary"
+        android:background="@drawable/background_content_toop"
         android:padding="@dimen/_8sdp">
 
         <ImageButton
@@ -65,7 +66,6 @@
             android:layout_marginBottom="@dimen/_5sdp"
             android:layout_toLeftOf="@id/message_send_btn"
             android:background="@drawable/follow_active_btn"
-            android:elevation="@dimen/_5sdp"
             android:hint="@string/what_s_your_mind"
             android:maxLines="5"
             android:padding="@dimen/_12sdp"
@@ -92,7 +92,8 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_layout"
         android:layout_below="@id/toolbar"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         android:padding="@dimen/_5sdp" />
 
 

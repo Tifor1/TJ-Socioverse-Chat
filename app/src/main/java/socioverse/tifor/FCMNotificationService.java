@@ -26,7 +26,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class FCMNotificationService extends FirebaseMessagingService {
 
-    private static final String TAG = "MyFirebaseMsgService";
+    private static final String TAG = "SocioverseService";
     private String channelId = "socioverse";
     private String channelname = "Socioverse";
 
