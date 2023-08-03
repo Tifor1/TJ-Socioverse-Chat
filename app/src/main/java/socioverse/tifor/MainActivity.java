@@ -1,36 +1,50 @@
 package socioverse.tifor;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.AudioAttributes;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.RemoteMessage;
 
 import socioverse.tifor.Utils.FirebaseUtil;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-    ChatFragment chatFragment;
-    ProfileFragment profileFragment;
+    private BottomNavigationView bottomNavigationView;
+    private ChatFragment chatFragment;
+    private ProfileFragment profileFragment;
+    private String channelId = "socioverse";
+    private String channelname = "Socioverse";
+    private RemoteMessage remoteMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        showNotification();
         permissionNotification();
         permissionImage();
 
@@ -125,7 +139,39 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        showNotification();
         permissionNotification();
         permissionImage();
+    }
+
+    private void showNotification() {
+        try {
+
+            Uri customSoundUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.notification);
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            // Since android Oreo notification channel is needed.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+                // Set the custom sound for the notification.
+                AudioAttributes audioAttributes = new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).setUsage(AudioAttributes.USAGE_NOTIFICATION).build();
+
+                NotificationChannel channel = new NotificationChannel(channelId, channelname, NotificationManager.IMPORTANCE_HIGH);
+                channel.setSound(customSoundUri, audioAttributes);
+                channel.setShowBadge(true);
+                channel.canShowBadge();
+                channel.canBubble();
+                long[] vibrationPattern = {100, 50, 100, 50, 100, 50, 100, 50, 100};
+                channel.setVibrationPattern(vibrationPattern);
+
+                notificationManager.createNotificationChannel(channel);
+            }
+
+
+        } catch (Exception e) {
+
+        }
+
     }
 }

@@ -83,7 +83,11 @@ public class ChatActivity extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                try {
+                    onBackPressed();
+                } catch (Exception e) {
+
+                }
             }
         });
 
@@ -229,7 +233,7 @@ public class ChatActivity extends AppCompatActivity {
                     // The API call was successful
                 } else {
 
-                     }
+                }
             }
         });
     }
