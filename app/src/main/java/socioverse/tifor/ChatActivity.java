@@ -91,17 +91,21 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        otherUsername.setText(otherUser.getUsername());
+        try {
+            otherUsername.setText(otherUser.getUsername());
 
-        sendMessageBtn.setOnClickListener((v -> {
-            String message = messageInput.getText().toString().trim();
-            if (!message.isEmpty()) {
-                sendMessageToUser(message);
-            } else {
-                messageInput.setError("Enter Your Message");
+            sendMessageBtn.setOnClickListener((v -> {
+                String message = messageInput.getText().toString().trim();
+                if (!message.isEmpty()) {
+                    sendMessageToUser(message);
+                } else {
+                    messageInput.setError("Enter Your Message");
 
-            }
-        }));
+                }
+            }));
+        } catch (Exception e) {
+
+        }
 
         try {
             getOrCreateChatroomModel();
