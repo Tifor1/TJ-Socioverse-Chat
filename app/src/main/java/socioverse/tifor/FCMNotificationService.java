@@ -55,15 +55,8 @@ public class FCMNotificationService extends FirebaseMessagingService {
 
                     Bitmap largeIconBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
 
-                    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
-                            .setSmallIcon(R.drawable.logo)
-                            .setLargeIcon(largeIconBitmap) // Set the large icon here
-                            .setPriority(NotificationCompat.PRIORITY_MAX)
-                            .setContentTitle(remoteMessage.getNotification().getTitle())
-                            .setContentText(remoteMessage.getNotification().getBody())
-                            .setAutoCancel(true)
-                            .setSound(customSoundUri)
-                            .setContentIntent(pendingIntent);
+                    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId).setSmallIcon(R.drawable.logo).setLargeIcon(largeIconBitmap) // Set the large icon here
+                            .setPriority(NotificationCompat.PRIORITY_MAX).setContentTitle(remoteMessage.getNotification().getTitle()).setContentText(remoteMessage.getNotification().getBody()).setAutoCancel(true).setSound(customSoundUri).setContentIntent(pendingIntent);
 
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -81,7 +74,11 @@ public class FCMNotificationService extends FirebaseMessagingService {
                         long[] vibrationPattern = {100, 50, 100, 50, 100, 50, 100, 50, 100};
                         channel.setVibrationPattern(vibrationPattern);
 
-                        notificationManager.createNotificationChannel(channel);
+                        try {
+                            notificationManager.createNotificationChannel(channel);
+                        } catch (Exception e) {
+
+                        }
                     }
 
                     notificationManager.notify(0, notificationBuilder.build());

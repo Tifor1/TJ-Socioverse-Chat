@@ -44,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        showNotification();
+        try {
+            showNotification();
+        } catch (Exception e) {
+
+        }
         permissionNotification();
         permissionImage();
 
@@ -165,7 +169,11 @@ public class MainActivity extends AppCompatActivity {
                 long[] vibrationPattern = {100, 50, 100, 50, 100, 50, 100, 50, 100};
                 channel.setVibrationPattern(vibrationPattern);
 
-                notificationManager.createNotificationChannel(channel);
+                try {
+                    notificationManager.createNotificationChannel(channel);
+                } catch (Exception e) {
+
+                }
             }
 
 
