@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LogInActivity">
+    android:padding="@dimen/_10mdp"
+    tools:context=".Activity.LogInActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -12,161 +13,127 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UselessLeaf">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/_24sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
             tools:ignore="ScrollViewSize">
 
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                app:layout_constraintBottom_toTopOf="@id/buttonSignIn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputPassword"
-                tools:ignore="MissingConstraints,VisualLintOverlap" />
 
-            <EditText
-                android:id="@+id/inputPassword"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/follow_active_btn"
-                android:hint="@string/password"
-                android:imeOptions="actionDone"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:paddingStart="@dimen/_16sdp"
-                android:paddingEnd="@dimen/_16sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/inputEmail"
-                tools:ignore="MissingConstraints,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,VisualLintOverlap" />
-
-            <EditText
-                android:id="@+id/inputEmail"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_40sdp"
-                android:background="@drawable/follow_active_btn"
-                android:hint="@string/e_mail"
-                android:imeOptions="actionNext"
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress"
-                android:paddingStart="@dimen/_16sdp"
-                android:paddingEnd="@dimen/_16sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text2"
-                tools:ignore="MissingConstraints,TextSizeCheck,TouchTargetSizeCheck,VisualLintTextFieldSize,VisualLintOverlap" />
-
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_gravity="center"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@id/buttonSignIn"
-                app:layout_constraintEnd_toEndOf="@id/buttonSignIn"
-                app:layout_constraintStart_toStartOf="@id/buttonSignIn"
-                app:layout_constraintTop_toTopOf="@id/buttonSignIn"
-                tools:ignore="MissingConstraints" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/show_password"
-                app:layout_constraintBottom_toBottomOf="@id/checkBox"
-                app:layout_constraintEnd_toStartOf="@id/checkBox"
-                app:layout_constraintTop_toTopOf="@id/checkBox"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:text="@string/welcome_back"
-                android:textColor="@color/purple_500"
-                android:textSize="@dimen/_18sdp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/text2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints,TextSizeCheck" />
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints,UselessParent">
 
 
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_to_continue"
-                android:textColor="@color/purple_500"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/inputEmail"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text1"
-                tools:ignore="MissingConstraints,TextSizeCheck" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_40mdp"
+                    android:text="@string/welcome_back"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/_18mdp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_to_continue"
+                    android:textColor="@color/purple_500"
+                    android:textSize="@dimen/_12mdp"
+                    android:textStyle="bold"
+                    tools:ignore="TextSizeCheck" />
 
 
-            <TextView
-                android:id="@+id/textCreateNewAccount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_150sdp"
-                android:text="@string/create_new_account"
-                android:textColor="@color/teal_200"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonSignIn"
-                tools:ignore="MissingConstraints,TextSizeCheck,TextContrastCheck" />
+                <EditText
+                    android:id="@+id/inputEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35mdp"
+                    android:layout_marginTop="@dimen/_40mdp"
+                    android:background="@drawable/follow_active_btn"
+                    android:hint="@string/e_mail"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_16mdp"
+                    android:paddingEnd="@dimen/_16mdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13mdp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonSignIn"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:text="@string/login"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp"
-                android:textStyle="bold"
-                app:cornerRadius="@dimen/_150sdp"
-                app:layout_constraintBottom_toTopOf="@id/textCreateNewAccount"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/checkBox"
-                tools:ignore="MissingConstraints,TextSizeCheck,VisualLintButtonSize" />
+                <EditText
+                    android:id="@+id/inputPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35mdp"
+                    android:layout_marginTop="@dimen/_40mdp"
+                    android:background="@drawable/follow_active_btn"
+                    android:hint="@string/password"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_16mdp"
+                    android:paddingEnd="@dimen/_16mdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13mdp"
+                    tools:ignore="TouchTargetSizeCheck" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20mdp"
+                    android:animateLayoutChanges="true">
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="@dimen/_25mdp"
+                        android:layout_height="@dimen/_25mdp"
+                        android:layout_gravity="center"
+                        android:visibility="invisible" />
+
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/buttonSignIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40mdp"
+                        android:layout_marginStart="@dimen/_16mdp"
+                        android:layout_marginEnd="@dimen/_16mdp"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13mdp"
+                        android:textStyle="bold"
+                        app:cornerRadius="@dimen/_150mdp" />
+
+
+                </FrameLayout>
+
+
+
+
+                <TextView
+                    android:id="@+id/textCreateNewAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30mdp"
+                    android:text="@string/create_new_account"
+                    android:textColor="@color/teal_200"
+                    android:textSize="@dimen/_13mdp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </ScrollView>
 
