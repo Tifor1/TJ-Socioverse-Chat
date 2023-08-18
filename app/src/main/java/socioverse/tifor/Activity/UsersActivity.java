@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -41,6 +42,9 @@ public class UsersActivity extends BaseActivity implements UserListener {
         try {
             database = FirebaseFirestore.getInstance();
             preferenceManager = new PreferenceManager(getApplicationContext());
+
+            // Enable system default mode
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
             // Set up the RecyclerView
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             binding.userRecyclerView.setLayoutManager(layoutManager);
@@ -50,21 +54,11 @@ public class UsersActivity extends BaseActivity implements UserListener {
 
 
         try {
-            setListener();
             getUsers();
         } catch (Exception e) {
             // Handle any exceptions here
         }
     }
-
-    private void setListener() {
-        try {
-            binding.imageBack.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
-        } catch (Exception e) {
-
-        }
-    }
-
     private void getUsers() {
         try {
             loading(true);
@@ -96,7 +90,7 @@ public class UsersActivity extends BaseActivity implements UserListener {
                             binding.userRecyclerView.setAdapter(userAdapter);
                             binding.userRecyclerView.setVisibility(View.VISIBLE);
                         } catch (Exception e) {
-                            Toast.makeText(UsersActivity.this, "Error displaying users.", Toast.LENGTH_SHORT).show(); // Use "UsersActivity.this"
+                            Toast.makeText(UsersActivity.this, "Error Displaying Users.", Toast.LENGTH_SHORT).show(); // Use "UsersActivity.this"
                         }
                     } else {
                         showErrorMessage();

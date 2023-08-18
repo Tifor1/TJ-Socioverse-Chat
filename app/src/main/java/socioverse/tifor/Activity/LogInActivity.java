@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,6 +48,8 @@ public class LogInActivity extends AppCompatActivity {
 
         try {
             auth = FirebaseAuth.getInstance();
+            // Enable system default mode
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         } catch (Exception e) {
 
         }
@@ -111,27 +114,27 @@ public class LogInActivity extends AppCompatActivity {
 
     private Boolean isValidSignInDetails() {
 
-            if (binding.inputEmail.getText().toString().trim().isEmpty()) {
+        if (binding.inputEmail.getText().toString().trim().isEmpty()) {
 
-                Toast.makeText(this, "Enter E-mail", Toast.LENGTH_SHORT).show();
-                return false;
+            binding.inputEmail.setError("Enter E-mail");
+            return false;
 
-            } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
 
-                Toast.makeText(this, "Enter Valid E-mail", Toast.LENGTH_SHORT).show();
-                return false;
+            binding.inputEmail.setError("Enter Valid E-mail");
+            return false;
 
-            } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
+        } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
 
-                Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
-                return false;
+            binding.inputPassword.setError("Enter Password");
+            return false;
 
-            } else {
+        } else {
 
-                loading(true);
-                return true;
+            loading(true);
+            return true;
 
-            }
+        }
 
     }
 
@@ -167,6 +170,7 @@ public class LogInActivity extends AppCompatActivity {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceManager.putString(Constants.KEY_USER_ID, documentSnapshot.getId());
                     preferenceManager.putString(Constants.KEY_NAME, documentSnapshot.getString(Constants.KEY_NAME));
+                    preferenceManager.putString(Constants.KEY_EMAIL, documentSnapshot.getString(Constants.KEY_EMAIL));
                     preferenceManager.putString(Constants.KEY_IMAGE, documentSnapshot.getString(Constants.KEY_IMAGE));
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

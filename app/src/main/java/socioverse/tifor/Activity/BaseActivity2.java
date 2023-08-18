@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -23,6 +24,8 @@ public class BaseActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         try {
+            // Enable system default mode
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
             PreferenceManager preferenceManager = new PreferenceManager(getApplicationContext());
             FirebaseFirestore database = FirebaseFirestore.getInstance();
 

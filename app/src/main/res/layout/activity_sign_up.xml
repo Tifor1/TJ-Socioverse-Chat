@@ -54,6 +54,8 @@
                      android:layout_height="wrap_content"
                      android:layout_gravity="center"
                      android:text="@string/add_image"
+                     android:textColor="@color/black"
+                     android:textStyle="bold"
                      android:textSize="@dimen/_10mdp"
                      tools:ignore="TextSizeCheck" />
 

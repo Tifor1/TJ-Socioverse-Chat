@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.ProfileActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10mdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ScrollViewSize">
+
+
+            <Button
+                android:id="@+id/profle_update_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30mdp"
+                android:background="@drawable/btn_rounded_corner"
+                android:text="@string/update_profile"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/logout_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email"
+                tools:ignore="MissingConstraints,TextContrastCheck,VisualLintButtonSize" />
+
+
+            <EditText
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8mdp"
+                android:background="@drawable/edit_text_rounded_corner"
+                android:elevation="@dimen/_5mdp"
+                android:enabled="false"
+                android:hint="@string/e_mail"
+                android:inputType="phone"
+                android:padding="@dimen/_8mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_username"
+                tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+
+            <EditText
+                android:id="@+id/profile_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8mdp"
+                android:background="@drawable/edit_text_rounded_corner"
+                android:elevation="@dimen/_5mdp"
+                android:hint="Username"
+                android:inputType="text"
+                android:padding="@dimen/_8mdp"
+                app:layout_constraintBottom_toTopOf="@id/profile_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image_view"
+                tools:ignore="Autofill,HardcodedText,MissingConstraints,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
+
+
+            <ImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="@dimen/_50mdp"
+                android:layout_height="@dimen/_50mdp"
+                android:layout_marginTop="@dimen/_50mdp"
+                android:layout_marginBottom="@dimen/_35mdp"
+                android:background="@drawable/circular_bg"
+                android:clickable="true"
+                android:elevation="@dimen/_5mdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/person_icon"
+                app:layout_constraintBottom_toTopOf="@id/profile_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription,ImageContrastCheck,KeyboardInaccessibleWidget,MissingConstraints,SpeakableTextPresentCheck,UnusedAttribute,VisualLintBounds" />
+
+            <ProgressBar
+                android:id="@+id/profile_progress_bar"
+                android:layout_width="@dimen/_25mdp"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/my_primary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/logout_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email"
+                tools:ignore="MissingConstraints,UnusedAttribute" />
+
+            <ProgressBar
+                android:id="@+id/profile_progress_bar2"
+                android:layout_width="@dimen/_25mdp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_45mdp"
+                android:indeterminateTint="@color/my_primary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profle_update_btn"
+                tools:ignore="MissingConstraints,UnusedAttribute" />
+
+
+            <TextView
+                android:id="@+id/logout_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50mdp"
+                android:text="@string/logout"
+                android:textColor="@color/red"
+                android:textSize="@dimen/_15mdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profle_update_btn"
+                tools:ignore="MissingConstraints,TextSizeCheck,VisualLintBounds" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,19 +5,15 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
-
 import socioverse.tifor.Model.ChatMessage;
 import socioverse.tifor.Model.User;
 import socioverse.tifor.databinding.ItemContainerRecentConversionBinding;
 import socioverse.tifor.listeners.ConversionListener;
 
 public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversionAdapter.ConversionViewHolder> {
-
 
     private final List<ChatMessage> chatMessages;
     private final ConversionListener conversionListener;
@@ -27,7 +23,6 @@ public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversi
         this.conversionListener = conversionListener;
     }
 
-
     @NonNull
     @Override
     public ConversionViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -36,9 +31,7 @@ public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversi
 
     @Override
     public void onBindViewHolder(@NonNull ConversionViewHolder holder, int position) {
-
         holder.setData(chatMessages.get(position));
-
     }
 
     @Override
@@ -47,27 +40,23 @@ public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversi
     }
 
     class ConversionViewHolder extends RecyclerView.ViewHolder {
-
         ItemContainerRecentConversionBinding binding;
 
         ConversionViewHolder(ItemContainerRecentConversionBinding itemContainerRecentConversionBinding) {
-
             super(itemContainerRecentConversionBinding.getRoot());
             binding = itemContainerRecentConversionBinding;
-
         }
 
         void setData(ChatMessage chatMessage) {
-
             try {
                 binding.imageProfile.setImageBitmap(getConversionImage(chatMessage.conversionImage));
                 binding.textName.setText(chatMessage.conversionName);
                 binding.textRecentMessage.setText(chatMessage.message);
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
-            binding.getRoot().setOnClickListener(v -> {
 
+            binding.getRoot().setOnClickListener(v -> {
                 try {
                     User user = new User();
                     user.userId = chatMessage.conversionId;
@@ -75,20 +64,14 @@ public class RecentConversionAdapter extends RecyclerView.Adapter<RecentConversi
                     user.image = chatMessage.conversionImage;
                     conversionListener.OnConversionClicked(user);
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             });
         }
-
     }
-
 
     private Bitmap getConversionImage(String encodedImage) {
         byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-
     }
-
 }
-

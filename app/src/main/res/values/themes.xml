@@ -3,16 +3,16 @@
     <style name="Theme.Socioverse" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="android:forceDarkAllowed" tools:ignore="NewApi">true</item>
-        <item name="colorPrimary">@color/my_primary</item>
-        <item name="colorPrimaryVariant">@color/my_primary</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/primary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/my_secondary</item>
-        <item name="colorSecondaryVariant">@color/my_secondary</item>
+        <item name="colorSecondary">@color/red</item>
+        <item name="colorSecondaryVariant">@color/red</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:ignore="NewApi">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:ignore="NewApi">@color/primary</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@color/off_white</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 </resources>

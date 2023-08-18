@@ -2,6 +2,7 @@ package socioverse.tifor.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
@@ -69,9 +70,27 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
             setListeners();
             listenConversation();
             showNotification();
+
+            // Enable system default mode
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+
         } catch (Exception e) {
 
         }
+
+        binding.imageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
 
     }
 
@@ -283,8 +302,6 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
                 NotificationChannel channel = new NotificationChannel(channelId, channelname, NotificationManager.IMPORTANCE_HIGH);
                 channel.setSound(customSoundUri, audioAttributes);
                 channel.setShowBadge(true);
-                channel.canShowBadge();
-                channel.canBubble();
                 long[] vibrationPattern = {100, 50, 100, 50, 100, 50, 100, 50, 100};
                 channel.setVibrationPattern(vibrationPattern);
 

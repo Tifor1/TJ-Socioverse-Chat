@@ -146,23 +146,23 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (binding.inputName.getText().toString().trim().isEmpty()) {
 
-            Toast.makeText(this, "Enter your Name", Toast.LENGTH_SHORT).show();
+            binding.inputName.setError("Enter your Name");
             return false;
 
         } else if (binding.inputEmail.getText().toString().trim().isEmpty()) {
 
-            Toast.makeText(this, "Enter your Email", Toast.LENGTH_SHORT).show();
+            binding.inputEmail.setError("Enter your Email");
             return false;
 
         } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.getText().toString()).matches()) {
 
-            Toast.makeText(this, "Enter Valid E-mail", Toast.LENGTH_SHORT).show();
+            binding.inputEmail.setError("Enter Valid E-mail");
             return false;
 
 
         } else if (binding.inputPassword.getText().toString().trim().isEmpty()) {
 
-            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+            binding.inputPassword.setError("Enter Password");
             return false;
         } else if (encodedImage == null) {
 
@@ -213,6 +213,7 @@ public class SignUpActivity extends AppCompatActivity {
                 preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                 preferenceManager.putString(Constants.KEY_USER_ID, documentReference.getId());
                 preferenceManager.putString(Constants.KEY_NAME, binding.inputName.getText().toString());
+                preferenceManager.putString(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
                 preferenceManager.putString(Constants.KEY_IMAGE, encodedImage);
 
             });
