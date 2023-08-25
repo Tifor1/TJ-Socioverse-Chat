@@ -13,12 +13,21 @@
         android:theme="@style/Theme.Socioverse"
         tools:targetApi="34">
         <activity
+            android:name=".Activity.CallNameActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Activity.CallActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".Activity.ProfileActivity"
-            android:exported="false" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Activity.SignUpActivity"
             android:exported="true"
@@ -61,15 +70,18 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <uses-permission
+        android:name="android.permission.POST_NOTIFICATIONS"
+        tools:ignore="ManifestOrder" />
     <uses-permission
         android:name="android.permission.READ_MEDIA_IMAGES"
         tools:ignore="ManifestOrder" />
-
     <uses-permission
         android:name="android.permission.INTERNET"
         tools:ignore="ManifestOrder" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

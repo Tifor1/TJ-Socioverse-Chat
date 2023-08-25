@@ -12,17 +12,15 @@
     <EditText
         android:id="@+id/inputMessage"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_40mdp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16mdp"
-        android:layout_marginLeft="@dimen/_16mdp"
         android:layout_marginEnd="@dimen/_8mdp"
-        android:layout_marginRight="@dimen/_8mdp"
         android:layout_marginBottom="@dimen/_12mdp"
         android:background="@drawable/background_chat_input"
         android:hint="@string/type_a_tifor_message"
-        android:imeOptions="actionDone"
-        android:inputType="text"
-        android:maxLines="4"
+        android:maxLines="5"
+        android:paddingTop="@dimen/_12mdp"
+        android:paddingBottom="@dimen/_12mdp"
         android:paddingStart="@dimen/_16mdp"
         android:paddingEnd="@dimen/_16mdp"
         android:textColor="@color/white"
@@ -30,38 +28,25 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/layoutSend"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="Autofill,MissingConstraints,RtlHardcoded" />
-
-
-
-
-
-    <View
-        android:id="@+id/viewBackground"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="@dimen/_16mdp"
-        android:background="@drawable/background_content_toop2"
-        app:layout_constraintBottom_toTopOf="@id/layoutSend"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-
-
-
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="@dimen/_25mdp"
-        android:layout_height="@dimen/_25mdp"
-        app:layout_constraintBottom_toBottomOf="@id/viewBackground"
-        app:layout_constraintEnd_toEndOf="@id/viewBackground"
-        app:layout_constraintStart_toStartOf="@id/viewBackground"
-        app:layout_constraintTop_toTopOf="@id/viewBackground"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="Autofill,MissingConstraints,RtlHardcoded,TextContrastCheck,TextFields,VisualLintTextFieldSize" />
 
 
     <!--All Show Bottom-->
+
+
+    <ImageView
+        android:id="@+id/imageVcall"
+        android:layout_width="@dimen/_30mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginTop="@dimen/_12mdp"
+        android:layout_marginEnd="@dimen/_30mdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/_4mdp"
+        android:src="@drawable/videocall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/red"
+        tools:ignore="ContentDescription,MissingConstraints,RtlHardcoded" />
 
 
     <View
@@ -77,6 +62,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
 
+
     <View
         android:id="@+id/viewSupporter"
         android:layout_width="match_parent"
@@ -87,35 +73,57 @@
         tools:ignore="MissingConstraints" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageBack"
-        android:layout_width="@dimen/_30mdp"
-        android:layout_height="@dimen/_30mdp"
-        android:layout_marginStart="@dimen/_16mdp"
-        android:layout_marginLeft="@dimen/_16mdp"
-        android:layout_marginTop="@dimen/_12mdp"
-        android:padding="@dimen/_5mdp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_25mdp"
+        android:layout_height="@dimen/_25mdp"
+        app:layout_constraintBottom_toBottomOf="@id/viewBackground"
+        app:layout_constraintEnd_toEndOf="@id/viewBackground"
+        app:layout_constraintStart_toStartOf="@id/viewBackground"
+        app:layout_constraintTop_toTopOf="@id/viewBackground"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginEnd="@dimen/_8mdp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14mdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/imageBack"
+        app:layout_constraintEnd_toStartOf="@id/imageCall"
+        app:layout_constraintStart_toEndOf="@id/imageBack"
+        app:layout_constraintTop_toTopOf="@id/imageBack"
+        tools:ignore="MissingConstraints,VisualLintOverlap" />
+
+
+    <View
+        android:id="@+id/viewBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_16mdp"
+        android:background="@drawable/background_content_toop2"
+        app:layout_constraintBottom_toTopOf="@id/inputMessage"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"
-        tools:ignore="MissingConstraints,RtlHardcoded" />
-
+        tools:ignore="MissingConstraints" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageInfo"
+        android:id="@+id/imageCall"
         android:layout_width="@dimen/_30mdp"
         android:layout_height="@dimen/_30mdp"
         android:layout_marginTop="@dimen/_12mdp"
         android:layout_marginEnd="@dimen/_16mdp"
         android:layout_marginRight="@dimen/_16mdp"
-        android:padding="@dimen/_4mdp"
-        android:src="@drawable/ic_info"
         android:background="?attr/selectableItemBackgroundBorderless"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/_4mdp"
+        android:src="@drawable/phone"
+        app:layout_constraintEnd_toStartOf="@id/imageVcall"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white"
         tools:ignore="MissingConstraints,RtlHardcoded" />
 
 
@@ -123,29 +131,30 @@
         android:id="@+id/layoutSend"
         android:layout_width="@dimen/_40mdp"
         android:layout_height="@dimen/_40mdp"
-        android:padding="@dimen/_8mdp"
-        android:src="@drawable/icon_send"
+        android:layout_marginEnd="@dimen/_10mdp"
         android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/_8mdp"
+        android:src="@drawable/ic_send"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/inputMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/inputMessage"
-        app:layout_constraintTop_toTopOf="@id/inputMessage"
-        app:tint="@color/white" />
+        app:layout_constraintTop_toTopOf="@id/inputMessage" />
 
-
-
-    <TextView
-        android:id="@+id/textAvailability"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#008000"
-        android:gravity="center"
-        android:padding="@dimen/_2mdp"
-        android:text="@string/tf_user_online"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_10mdp"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageBack"
+        android:layout_width="@dimen/_30mdp"
+        android:layout_height="@dimen/_30mdp"
+        android:layout_marginStart="@dimen/_16mdp"
+        android:layout_marginLeft="@dimen/_16mdp"
+        android:layout_marginTop="@dimen/_12mdp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:padding="@dimen/_5mdp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/white"
+        tools:ignore="MissingConstraints,RtlHardcoded" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
@@ -163,23 +172,17 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textName"
-        android:layout_width="0dp"
+        android:id="@+id/textAvailability"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_8mdp"
-        android:layout_marginEnd="@dimen/_8mdp"
-        android:ellipsize="end"
+        android:background="#008000"
         android:gravity="center"
-        android:maxLines="1"
+        android:padding="@dimen/_2mdp"
+        android:text="@string/tf_user_online"
         android:textColor="@color/white"
-        android:textSize="@dimen/_14mdp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/imageBack"
-        app:layout_constraintEnd_toStartOf="@id/imageInfo"
-        app:layout_constraintStart_toEndOf="@id/imageBack"
-        app:layout_constraintTop_toTopOf="@id/imageBack"
-        tools:ignore="MissingConstraints" />
-
+        android:textSize="@dimen/_10mdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/viewSupporter" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

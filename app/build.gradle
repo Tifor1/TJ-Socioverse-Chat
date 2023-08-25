@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId "socioverse.tifor"
         multiDexEnabled true
-        minSdk 19
+        minSdk 21
         targetSdk 34
         versionCode 29
         versionName "1.28"
@@ -60,7 +60,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
     implementation 'com.hbb20:ccp:2.7.3'
 
     // DynamicSizes
@@ -72,5 +71,9 @@ dependencies {
     // Rounded ImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.11'
+    // Add this line to your module-level build.gradle file's dependencies, usually named [app].
+    implementation 'com.github.ZEGOCLOUD:zego_uikit_prebuilt_call_android:+'
+    // Add this line to your module-level build.gradle file's dependencies, usually named [app].
+    implementation 'com.github.ZEGOCLOUD:zego_uikit_signaling_plugin_android:+'
 
 }

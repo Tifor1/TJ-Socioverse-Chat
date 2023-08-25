@@ -24,8 +24,8 @@ import socioverse.tifor.R;
 public class FCMNotificationService extends FirebaseMessagingService {
 
     private static final String TAG = "SocioverseService";
-    private String channelId = "socioverse";
-    private String channelname = "Socioverse";
+    private final String channelId = "socioverse";
+    private final String channelname = "Socioverse";
 
     @Override
     public void onCreate() {
@@ -69,8 +69,6 @@ public class FCMNotificationService extends FirebaseMessagingService {
                             NotificationChannel channel = new NotificationChannel(channelId, channelname, NotificationManager.IMPORTANCE_MAX);
                             channel.setSound(customSoundUri, audioAttributes);
                             channel.setShowBadge(true);
-                            channel.canShowBadge();
-                            channel.canBubble();
                             long[] vibrationPattern = {100, 50, 100, 50, 100, 50, 100, 50, 100};
                             channel.setVibrationPattern(vibrationPattern);
                             notificationManager.createNotificationChannel(channel);

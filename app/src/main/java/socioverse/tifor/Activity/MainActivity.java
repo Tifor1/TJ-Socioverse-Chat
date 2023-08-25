@@ -1,10 +1,6 @@
 package socioverse.tifor.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
-import android.annotation.SuppressLint;
+import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -19,8 +15,10 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -28,12 +26,14 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.zegocloud.uikit.prebuilt.call.config.ZegoNotificationConfig;
+import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig;
+import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationService;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 import socioverse.tifor.Adapter.RecentConversionAdapter;
 import socioverse.tifor.Model.ChatMessage;
@@ -51,10 +51,10 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
     private List<ChatMessage> conversions;
     private RecentConversionAdapter conversionAdapter;
     private FirebaseFirestore database;
-    private Boolean isReceiverAvailable = false;
+    private final Boolean isReceiverAvailable = false;
     private User user;
-    private String channelname = "Socioverse";
-    private String channelId = "socioverse";
+    private final String channelname = "Socioverse";
+    private final String channelId = "socioverse";
 
 
     @Override
@@ -70,6 +70,7 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
             setListeners();
             listenConversation();
             showNotification();
+            startService();
 
             // Enable system default mode
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
@@ -315,6 +316,33 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
 
     }
 
+    private void startService() {
+
+        try {
+            Application application = getApplication(); // Android's application context
+            long appID = 900851183;   // yourAppID
+            String appSign = "e2dbd39a96fcba5c14649d787451893020a522a12891490ac92bd90e2a62ad3f";  // yourAppSign
+            String userID = preferenceManager.getString(Constants.KEY_EMAIL); // yourUserID, userID should only contain numbers, English characters, and '_'.
+            String userName = preferenceManager.getString(Constants.KEY_NAME);   // yourUserName
+
+            ZegoUIKitPrebuiltCallInvitationConfig callInvitationConfig = new ZegoUIKitPrebuiltCallInvitationConfig();
+            callInvitationConfig.notifyWhenAppRunningInBackgroundOrQuit = true;
+            ZegoNotificationConfig notificationConfig = new ZegoNotificationConfig();
+            notificationConfig.sound = "zego_uikit_sound_call";
+            notificationConfig.channelID = "CallInvitation";
+            notificationConfig.channelName = "CallInvitation";
+            ZegoUIKitPrebuiltCallInvitationService.init(getApplication(), appID, appSign, userID, userName, callInvitationConfig);
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ZegoUIKitPrebuiltCallInvitationService.unInit();
+    }
 
     @Override
     protected void onStart() {
@@ -323,6 +351,7 @@ public class MainActivity extends BaseActivity2 implements ConversionListener {
             loadUserDetails();
             getToken();
             showNotification();
+            startService();
         } catch (Exception e) {
 
         }

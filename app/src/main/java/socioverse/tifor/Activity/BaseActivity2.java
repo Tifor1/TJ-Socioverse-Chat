@@ -31,8 +31,7 @@ public class BaseActivity2 extends AppCompatActivity {
 
             String userId = preferenceManager.getString(Constants.KEY_USER_ID);
             if (userId != null) {
-                documentReference = database.collection(Constants.KEY_COLLECTION_USERS)
-                        .document(userId);
+                documentReference = database.collection(Constants.KEY_COLLECTION_USERS).document(userId);
             }
         } catch (Exception e) {
 
@@ -41,13 +40,13 @@ public class BaseActivity2 extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    protected void onPause() {
+        super.onPause();
         try {
             documentReference.update(Constants.KEY_AVAILABILITY, 0);
         } catch (Exception e) {
 
         }
-        super.onStop();
     }
 
     @Override

@@ -76,4 +76,7 @@
     <string name="chats">Chats</string>
     <string name="search_user">Search User</string>
     <string name="emailText">hi@gmail.com</string>
+    <string name="send">Send</string>
+    <string name="invite_code">Invite Code</string>
+    <string name="one_time_code_save">One Time Code Save</string>
 </resources>

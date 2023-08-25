@@ -1,8 +1,5 @@
 package socioverse.tifor.Activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,23 +8,20 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 
-import socioverse.tifor.Model.User;
-import socioverse.tifor.R;
 import socioverse.tifor.databinding.ActivityProfileBinding;
 import socioverse.tifor.utlities.Constants;
 import socioverse.tifor.utlities.PreferenceManager;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseActivity2 {
 
     private ActivityProfileBinding binding;
     private PreferenceManager preferenceManager;
@@ -45,6 +39,15 @@ public class ProfileActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
+        binding.profleUpdateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(), "Add Later", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override

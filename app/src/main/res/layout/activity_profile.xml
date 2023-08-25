@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     tools:context=".Activity.ProfileActivity">
 
     <ScrollView
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_8mdp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_rounded_corner"
                 android:elevation="@dimen/_5mdp"
                 android:enabled="false"
@@ -65,8 +67,9 @@
                 android:layout_margin="@dimen/_8mdp"
                 android:background="@drawable/edit_text_rounded_corner"
                 android:elevation="@dimen/_5mdp"
-                android:hint="Username"
+                android:enabled="false"
                 android:inputType="text"
+                android:hint="Name"
                 android:padding="@dimen/_8mdp"
                 app:layout_constraintBottom_toTopOf="@id/profile_username"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -74,23 +77,6 @@
                 app:layout_constraintTop_toBottomOf="@id/profile_image_view"
                 tools:ignore="Autofill,HardcodedText,MissingConstraints,TouchTargetSizeCheck,UnusedAttribute,VisualLintTextFieldSize" />
 
-
-            <ImageView
-                android:id="@+id/profile_image_view"
-                android:layout_width="@dimen/_50mdp"
-                android:layout_height="@dimen/_50mdp"
-                android:layout_marginTop="@dimen/_50mdp"
-                android:layout_marginBottom="@dimen/_35mdp"
-                android:background="@drawable/circular_bg"
-                android:clickable="true"
-                android:elevation="@dimen/_5mdp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/person_icon"
-                app:layout_constraintBottom_toTopOf="@id/profile_username"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription,ImageContrastCheck,KeyboardInaccessibleWidget,MissingConstraints,SpeakableTextPresentCheck,UnusedAttribute,VisualLintBounds" />
 
             <ProgressBar
                 android:id="@+id/profile_progress_bar"
@@ -117,7 +103,6 @@
                 app:layout_constraintTop_toBottomOf="@id/profle_update_btn"
                 tools:ignore="MissingConstraints,UnusedAttribute" />
 
-
             <TextView
                 android:id="@+id/logout_btn"
                 android:layout_width="wrap_content"
@@ -130,6 +115,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/profle_update_btn"
                 tools:ignore="MissingConstraints,TextSizeCheck,VisualLintBounds" />
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/profile_image_view"
+                android:layout_width="@dimen/_80mdp"
+                android:layout_height="@dimen/_80mdp"
+                android:layout_marginTop="@dimen/_60mdp"
+                android:background="@drawable/circular_bg"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toTopOf="@id/profile_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_oval="true"
+                tools:ignore="MissingConstraints" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

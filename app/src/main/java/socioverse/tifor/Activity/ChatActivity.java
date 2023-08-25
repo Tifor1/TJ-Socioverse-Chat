@@ -1,14 +1,18 @@
 package socioverse.tifor.Activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
@@ -67,9 +71,41 @@ public class ChatActivity extends BaseActivity {
             loadReceiverData();
             init();
             listenMessage();
+
         } catch (Exception e) {
 
         }
+
+
+        binding.inputMessage.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                try {
+                    // Show or hide the Send button based on EditText's content
+                    if (charSequence.length() > 0) {
+                        binding.layoutSend.setVisibility(AppCompatImageView.VISIBLE);
+                    } else {
+                        binding.layoutSend.setVisibility(AppCompatImageView.GONE);
+                    }
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+
     }
 
     private void init() {
@@ -106,6 +142,7 @@ public class ChatActivity extends BaseActivity {
                 conversion.put(Constants.KEY_SENDER_IMAGE, preferenceManager.getString(Constants.KEY_IMAGE));
                 conversion.put(Constants.KEY_RECEIVER_ID, receiverUser.userId);
                 conversion.put(Constants.KEY_RECEIVER_NAME, receiverUser.username);
+                conversion.put(Constants.KEY_RECEIVER_EMAIL, receiverUser.email);
                 conversion.put(Constants.KEY_RECEIVER_IMAGE, receiverUser.image);
                 conversion.put(Constants.KEY_LAST_MESSAGE, binding.inputMessage.getText().toString());
                 conversion.put(Constants.KEY_TIMESTAMP, new Date());
@@ -122,6 +159,10 @@ public class ChatActivity extends BaseActivity {
                 }
             } catch (Exception e) {
 
+            }
+
+            if (binding.inputMessage.getText().toString().trim().isEmpty()) {
+                binding.inputMessage.setError("Enter Text");
             }
             binding.inputMessage.setText(null);
         } catch (Exception e) {
@@ -307,14 +348,14 @@ public class ChatActivity extends BaseActivity {
     private Bitmap getBitmapFromcodedString(String encodedImage) {
 
 
-            if (encodedImage != null) {
-                byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-                return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            } else {
+        if (encodedImage != null) {
+            byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } else {
 
-                return null;
+            return null;
 
-            }
+        }
 
     }
 
@@ -340,7 +381,7 @@ public class ChatActivity extends BaseActivity {
 
     private String getReadableDateTime(Date date) {
 
-            return new SimpleDateFormat("dd,MMM,yyyy - hh:mm a", Locale.getDefault()).format(date);
+        return new SimpleDateFormat("dd,MMM,yyyy - hh:mm a", Locale.getDefault()).format(date);
 
     }
 
@@ -404,6 +445,46 @@ public class ChatActivity extends BaseActivity {
         }
 
     };
+
+    private void call() {
+        audioCall();
+        videoCall();
+    }
+
+    private void audioCall() {
+
+        binding.imageCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent intent = new Intent(getApplicationContext(), CallActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+
+    }
+
+    private void videoCall() {
+
+        binding.imageVcall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    Intent intent = new Intent(getApplicationContext(), CallActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
+
+    }
 
     @Override
     protected void onResume() {
