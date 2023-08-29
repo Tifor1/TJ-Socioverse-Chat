@@ -14,7 +14,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://www.jitpack.io' } // <- Add this line.
+        maven { url 'https://www.jitpack.io' }
     }
 }
 rootProject.name = "Socioverse"
